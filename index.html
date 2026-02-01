@@ -728,6 +728,44 @@
 }
 
 
+/* Mobile Gallery */
+.mobile-only-gallery {
+  display: none;
+}
+
+.mobile-gallery {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  margin-top: 22px;
+}
+
+.mg-item {
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: #fff;
+  box-shadow: var(--shadow-soft);
+}
+
+.mg-item img {
+  width: 100%;
+  height: auto;
+  display: block;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
+/* Skrýt desktop galerii na mobilu, zobrazit mobilní */
+@media (max-width: 820px) {
+  .premium-gallery {
+    display: none !important;
+  }
+  
+  .mobile-only-gallery {
+    display: block;
+  }
+}
     
   </style>
 
@@ -1018,24 +1056,98 @@
     </div>
   </div>
 
-       <script>
-  // Spustit IHNED - před loadem
-  (function() {
-    const gallery = document.getElementById('premiumGallery');
-    if (!gallery) return;
+<!-- MOBILE GALLERY (zobrazí se pouze na mobilu) -->
+<section class="section alt mobile-only-gallery" style="padding-top:0;">
+  <div class="container">
+    <div class="mobile-gallery">
+      <div class="mg-item">
+        <img src="https://www.reality-velickova.cz/softreal/img/uploads/big/2349_6943321308.jpg" alt="Mezonet Praha 1">
+      </div>
+      <div class="mg-item">
+        <img src="https://www.reality-velickova.cz/softreal/img/uploads/big/2349_4673169784.jpg" alt="Mezonet Praha 1">
+      </div>
+      <div class="mg-item">
+        <img src="https://www.reality-velickova.cz/softreal/img/uploads/big/2349_6943302737.jpg" alt="Mezonet Praha 1">
+      </div>
+      <div class="mg-item">
+        <img src="https://www.reality-velickova.cz/softreal/img/uploads/big/2349_6943632940.jpg" alt="Mezonet Praha 1">
+      </div>
+      <div class="mg-item">
+        <img src="https://www.reality-velickova.cz/softreal/img/uploads/big/2349_6943603334.jpg" alt="Mezonet Praha 1">
+      </div>
+      <div class="mg-item">
+        <img src="https://www.reality-velickova.cz/softreal/img/uploads/big/2349_6943393420.jpg" alt="Mezonet Praha 1">
+      </div>
+      <div class="mg-item">
+        <img src="https://www.reality-velickova.cz/softreal/img/uploads/big/2349_7737785869.jpg" alt="Mezonet Praha 1">
+      </div>
+      <div class="mg-item">
+        <img src="https://www.reality-velickova.cz/softreal/img/uploads/big/2349_6943525165.jpg" alt="Mezonet Praha 1">
+      </div>
+      <div class="mg-item">
+        <img src="https://www.reality-velickova.cz/softreal/img/uploads/big/2349_6943628367.jpg" alt="Mezonet Praha 1">
+      </div>
+      <div class="mg-item">
+        <img src="https://www.reality-velickova.cz/softreal/img/uploads/big/2349_6943745656.jpg" alt="Mezonet Praha 1">
+      </div>
+      <div class="mg-item">
+        <img src="https://www.reality-velickova.cz/softreal/img/uploads/big/2349_6943245153.jpg" alt="Mezonet Praha 1">
+      </div>
+      <div class="mg-item">
+        <img src="https://www.reality-velickova.cz/softreal/img/uploads/big/2349_6943427614.jpg" alt="Mezonet Praha 1">
+      </div>
+      <div class="mg-item">
+        <img src="https://www.reality-velickova.cz/softreal/img/uploads/big/2349_6943621674.jpg" alt="Mezonet Praha 1">
+      </div>
+      <div class="mg-item">
+        <img src="https://www.reality-velickova.cz/softreal/img/uploads/big/2349_6943412494.jpg" alt="Mezonet Praha 1">
+      </div>
+      <div class="mg-item">
+        <img src="https://www.reality-velickova.cz/softreal/img/uploads/big/2349_6943473208.jpg" alt="Mezonet Praha 1">
+      </div>
+      <div class="mg-item">
+        <img src="https://www.reality-velickova.cz/softreal/img/uploads/big/2349_6943637795.jpg" alt="Mezonet Praha 1">
+      </div>
+      <div class="mg-item">
+        <img src="https://www.reality-velickova.cz/softreal/img/uploads/big/2349_6943286045.jpg" alt="Mezonet Praha 1">
+      </div>
+      <div class="mg-item">
+        <img src="https://www.reality-velickova.cz/softreal/img/uploads/big/2349_6943266978.jpg" alt="Mezonet Praha 1">
+      </div>
+      <div class="mg-item">
+        <img src="https://www.reality-velickova.cz/softreal/img/uploads/big/2349_6943451567.jpg" alt="Mezonet Praha 1">
+      </div>
+      <div class="mg-item">
+        <img src="https://www.reality-velickova.cz/softreal/img/uploads/big/2349_4673178078.jpg" alt="Mezonet Praha 1">
+      </div>
+      <div class="mg-item">
+        <img src="https://www.reality-velickova.cz/softreal/img/uploads/big/2349_6943375736.jpg" alt="Mezonet Praha 1">
+      </div>
+      <div class="mg-item">
+        <img src="https://www.reality-velickova.cz/softreal/img/uploads/big/2349_6943588115.jpg" alt="Mezonet Praha 1">
+      </div>
+      <div class="mg-item">
+        <img src="https://www.reality-velickova.cz/softreal/img/uploads/big/2349_6943337352.jpg" alt="Mezonet Praha 1">
+      </div>
+      <div class="mg-item">
+        <img src="https://www.reality-velickova.cz/softreal/img/uploads/big/2349_6943547395.jpg" alt="Mezonet Praha 1">
+      </div>
+      <div class="mg-item">
+        <img src="https://www.reality-velickova.cz/softreal/img/uploads/big/2349_6943507813.jpg" alt="Mezonet Praha 1">
+      </div>
+      <div class="mg-item">
+        <img src="https://www.reality-velickova.cz/softreal/img/uploads/big/2349_6943567372.jpg" alt="Mezonet Praha 1">
+      </div>
+      <div class="mg-item">
+        <img src="https://www.reality-velickova.cz/softreal/img/uploads/big/2349_6943643494.jpg" alt="Mezonet Praha 1">
+      </div>
+      <div class="mg-item">
+        <img src="https://www.reality-velickova.cz/softreal/img/uploads/big/2349_6943690132.jpg" alt="Mezonet Praha 1">
+      </div>
+    </div>
+  </div>
+</section>
 
-    // NATVRDO odstranit lazy ze všech obrázků
-    gallery.querySelectorAll('img').forEach(img => {
-      img.removeAttribute('loading');
-      img.loading = 'eager';
-      
-      // Force reload
-      const src = img.src;
-      img.src = '';
-      img.src = src;
-    });
-  })();
-</script>
        
 </section>
 
