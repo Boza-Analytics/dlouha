@@ -959,17 +959,43 @@
         </div>
 
         <div class="reveal">
-  <div class="panel" aria-label="Tým Reality Veličková">
+  <div class="panel" aria-label="Tým Reality Veličková" style="position:relative; overflow:hidden; border-radius:26px;">
+  <!-- rozmazané pozadí -->
+  <div
+    aria-hidden="true"
+    style="
+      position:absolute; inset:0;
+      background-image:url('https://www.reality-velickova.cz/themes/velickova2024/assets/img/hero0.jpg?d=2');
+      background-size:cover; background-position:center 30%;
+      transform:scale(1.08);
+      filter:blur(18px);
+      opacity:.55;
+    ">
+  </div>
+
+  <!-- jemný tmavý overlay pro čistotu -->
+  <div aria-hidden="true" style="position:absolute; inset:0; background:rgba(10,10,10,.25);"></div>
+
+  <!-- ostrý obrázek, celý viditelný -->
   <img
     src="https://www.reality-velickova.cz/themes/velickova2024/assets/img/hero0.jpg?d=2"
     alt="Tým Reality Veličková"
-    style="width:100%; aspect-ratio: 16 / 9; height:auto; object-fit:cover; object-position:center 30%; background:#fff;"
+    style="
+      position:relative;
+      width:100%;
+      height:420px;
+      object-fit:contain;
+      object-position:center;
+      padding:18px 18px 14px;
+    "
   >
-  <div class="panel-caption">
+
+  <div class="panel-caption" style="position:relative;">
     <span><b>Reality Velíčková</b> • servis • diskrétnost • zkušenost</span>
     <span>Komorní formát</span>
   </div>
 </div>
+
 
           <div style="margin-top:18px;" class="card">
             <div class="k">Pro koho je Open House</div>
