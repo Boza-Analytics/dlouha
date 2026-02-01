@@ -1017,6 +1017,26 @@
       </button>
     </div>
   </div>
+
+       <script>
+  // Spustit IHNED - před loadem
+  (function() {
+    const gallery = document.getElementById('premiumGallery');
+    if (!gallery) return;
+
+    // NATVRDO odstranit lazy ze všech obrázků
+    gallery.querySelectorAll('img').forEach(img => {
+      img.removeAttribute('loading');
+      img.loading = 'eager';
+      
+      // Force reload
+      const src = img.src;
+      img.src = '';
+      img.src = src;
+    });
+  })();
+</script>
+       
 </section>
 
 
