@@ -1350,6 +1350,61 @@
     lb.addEventListener('click', (e) => { if(e.target === lb) close(); });
     document.addEventListener('keydown', (e) => { if(e.key === 'Escape' && lb.style.display === 'block') close(); });
   })();
+
+<script>
+  (function () {
+    const gallery = document.getElementById('premiumGallery');
+    if (!gallery) return;
+
+    const toResized = (url) => {
+      if (!url) return url;
+      // big -> resized preview (fast)
+      // https://.../big/2349_xxx.jpg  => https://.../resized/2349_xxx.jpg/640/360
+      return url
+        .replace('/img/uploads/big/', '/img/uploads/resized/')
+        .replace(/\.jpg$/i, '.jpg/640/360')
+        .replace(/\.jpeg$/i, '.jpeg/640/360')
+        .replace(/\.png$/i, '.png/640/360');
+    };
+
+    // 1) Convert gallery thumbnails to resized (keep data-full as big for lightbox)
+    gallery.querySelectorAll('.pg-item').forEach(btn => {
+      const img = btn.querySelector('img');
+      if (!img) return;
+
+      const full = btn.getAttribute('data-full') || img.getAttribute('src');
+      if (!full) return;
+
+      // keep full for lightbox
+      if (!btn.getAttribute('data-full')) btn.setAttribute('data-full', full);
+
+      // set fast thumbnail
+      const preview = toResized(full);
+      img.setAttribute('src', preview);
+      img.setAttribute('decoding', 'async');
+      img.removeAttribute('loading'); // avoid Safari lazy+reveal weirdness
+    });
+
+    // 2) Force-load any images that still didn't load (Safari + reveal + lazy edge cases)
+    const forceLoad = () => {
+      gallery.querySelectorAll('img').forEach(img => {
+        // trigger reflow + retry
+        const s = img.getAttribute('src');
+        if (!s) return;
+        img.style.opacity = '0.999';
+        img.src = s;
+      });
+    };
+
+    // run after first paint
+    requestAnimationFrame(() => requestAnimationFrame(forceLoad));
+
+    // and after short delay as a final nudge
+    setTimeout(forceLoad, 350);
+  })();
+</script>
+
+  
 </script>
 
   
