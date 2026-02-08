@@ -1412,32 +1412,7 @@
 
     document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
-    // Form handler (frontend placeholder)
-    const form = document.getElementById('openhouseForm');
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-
-      // Basic validation
-      const required = ['name','email','phone','consent'];
-      for (const key of required) {
-        const field = form.elements[key];
-        if (!field) continue;
-        if ((field.type === 'checkbox' && !field.checked) || (field.type !== 'checkbox' && !field.value.trim())) {
-          field.focus();
-          alert('Prosím vyplňte povinné údaje a potvrďte souhlas.');
-          return;
-        }
-      }
-
-      const data = Object.fromEntries(new FormData(form).entries());
-
-      // TODO: Integrace - nahraďte fetch endpointem (Make/Zapier/CRM/API)
-      // await fetch('https://YOUR-ENDPOINT', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(data) });
-
-      console.log('Open House registration:', data);
-      alert('Děkujeme. Registraci jsme přijali a brzy se vám ozveme s potvrzením konkrétního termínu Open House.');
-      form.reset();
-    });
+    
   </script>
 
 <!-- Lightbox (no external libs) -->
