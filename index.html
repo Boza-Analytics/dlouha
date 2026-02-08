@@ -1208,53 +1208,69 @@
             - action="" nahraďte endpointem (CRM / Make / Zapier / vlastní API).
             - nebo použijte fetch v JS níže.
           -->
-          <form id="openhouseForm" action="#" method="POST" novalidate>
-            <div class="row">
-              <div>
-                <label for="name">Jméno a příjmení *</label>
-                <input id="name" name="name" type="text" autocomplete="name" required />
-              </div>
-              <div>
-                <label for="email">E-mail *</label>
-                <input id="email" name="email" type="email" autocomplete="email" required />
-              </div>
-            </div>
+         <form id="openhouseForm" action="https://api.web3forms.com/submit" method="POST" novalidate>
 
-            <div class="row" style="margin-top:12px;">
-              <div>
-                <label for="phone">Telefon *</label>
-                <input id="phone" name="phone" type="tel" autocomplete="tel" required />
-              </div>
-              <div>
-                <label for="preference">Preferovaný čas</label>
-                <select id="preference" name="preference">
-                  <option value="">Nezáleží</option>
-                  <option value="dopoledne">Dopoledne</option>
-                  <option value="odpoledne">Odpoledne</option>
-                  <option value="podvecer">Podvečer</option>
-                </select>
-              </div>
-            </div>
+  <!-- Web3Forms -->
+  <input type="hidden" name="access_key" value="5c088e0c-4ea7-47ee-8d91-5ff2bf43c964">
+  <input type="hidden" name="subject" value="Nová registrace – Open House">
+  <input type="hidden" name="from_name" value="Reality Velíčková – Open House">
+  <input type="text" name="botcheck" style="display:none">
 
-            <div style="margin-top:12px;">
-              <label for="message">Poznámka (volitelné)</label>
-              <textarea id="message" name="message" placeholder="Preference termínu, počet osob nebo další poznámky…"></textarea>
-            </div>
+  <div class="row">
+    <div>
+      <label for="name">Jméno a příjmení *</label>
+      <input id="name" name="name" type="text" autocomplete="name" required />
+    </div>
+    <div>
+      <label for="email">E-mail *</label>
+      <input id="email" name="email" type="email" autocomplete="email" required />
+    </div>
+  </div>
 
-            <div class="consent">
-              <input id="consent" name="consent" type="checkbox" required />
-              <div>
-                Souhlasím se zpracováním osobních údajů za účelem organizace události a následného kontaktování.
-                <a href="https://www.reality-velickova.cz/" target="_blank" rel="noopener">Více informací</a>.
-              </div>
-            </div>
+  <div class="row" style="margin-top:12px;">
+    <div>
+      <label for="phone">Telefon *</label>
+      <input id="phone" name="phone" type="tel" autocomplete="tel" required />
+    </div>
+    <div>
+      <label for="preference">Preferovaný čas</label>
+      <select id="preference" name="preference">
+        <option value="">Nezáleží</option>
+        <option value="dopoledne">Dopoledne</option>
+        <option value="odpoledne">Odpoledne</option>
+        <option value="podvecer">Podvečer</option>
+      </select>
+    </div>
+  </div>
 
-            <button class="btn btn-primary submit" type="submit">Odeslat registraci</button>
+  <div style="margin-top:12px;">
+    <label for="message">Poznámka (volitelné)</label>
+    <textarea id="message" name="message"></textarea>
+  </div>
 
-            <div class="hint">
-              Pozn.: Registrace slouží k rezervaci místa a domluvení termínu. Nejedná se o závaznou nabídku koupě.
-            </div>
-          </form>
+  <div class="consent">
+    <input id="consent" name="consent" type="checkbox" required />
+    <div>
+      Souhlasím se zpracováním osobních údajů…
+    </div>
+  </div>
+
+  <button class="btn btn-primary submit" type="submit">
+    Odeslat registraci
+  </button>
+
+  <div class="hint">
+    Pozn.: Registrace slouží k rezervaci místa…
+  </div>
+
+</form>
+
+<!-- SUCCESS MESSAGE -->
+<div id="openhouseSuccess" style="display:none">
+  <h3>✅ Registrace odeslána</h3>
+  <p>Ozveme se vám s potvrzením termínu.</p>
+</div>
+
         </div>
 
         <div class="reveal">
@@ -1481,8 +1497,53 @@
     lb.addEventListener('click', (e) => { if(e.target === lb) close(); });
     document.addEventListener('keydown', (e) => { if(e.key === 'Escape' && lb.style.display === 'block') close(); });
   })();
+
+
+
+  
 </script>
 
+
+  <script>
+const form = document.getElementById('openhouseForm');
+const success = document.getElementById('openhouseSuccess');
+const submitBtn = form.querySelector('button[type="submit"]');
+
+form.addEventListener('submit', async (e) => {
+  e.preventDefault();
+
+  submitBtn.disabled = true;
+  submitBtn.textContent = 'Odesílám…';
+
+  try {
+    const formData = new FormData(form);
+
+    const res = await fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      body: formData,
+      headers: {
+        'Accept': 'application/json'
+      }
+    });
+
+    const data = await res.json();
+
+    if (data.success) {
+      form.style.display = 'none';
+      success.style.display = 'block';
+      form.reset();
+    } else {
+      alert('Odeslání se nezdařilo. Zkuste to prosím znovu.');
+    }
+
+  } catch (err) {
+    alert('Chyba připojení. Zkuste to později.');
+  } finally {
+    submitBtn.disabled = false;
+    submitBtn.textContent = 'Odeslat registraci';
+  }
+});
+</script>
 
 
 
